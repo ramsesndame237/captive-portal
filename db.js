@@ -25,7 +25,7 @@ async function init() {
     CREATE TABLE IF NOT EXISTS guests (
       id            INTEGER PRIMARY KEY AUTOINCREMENT,
       name          TEXT NOT NULL,
-      email         TEXT NOT NULL,
+      email         TEXT NOT NULL DEFAULT '',
       phone         TEXT NOT NULL UNIQUE,
       last_mac      TEXT,
       visit_count   INTEGER NOT NULL DEFAULT 1,

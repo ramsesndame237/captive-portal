@@ -177,6 +177,12 @@ input:focus-visible {
   outline-offset: 1px;
 }
 
+.field-optional {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .field-error {
   margin: -8px 0 12px;
   font-size: 13px;

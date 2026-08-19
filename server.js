@@ -51,7 +51,7 @@ app.post('/api/register', async (req, res) => {
   if (!name || !name.trim()) {
     return res.status(400).json({ error: 'Le nom est requis.' });
   }
-  if (!isValidEmail(email || '')) {
+  if (email && !isValidEmail(email)) {
     return res.status(400).json({ error: 'Adresse email invalide.' });
   }
   if (!isValidPhone(phone || '')) {

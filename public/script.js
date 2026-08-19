@@ -197,7 +197,7 @@
       setFieldError(errorName, 'Merci d\'entrer votre nom.');
       hasError = true;
     }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setFieldError(errorEmail, 'Adresse email invalide.');
       hasError = true;
     }
