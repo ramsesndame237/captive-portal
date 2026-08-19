@@ -23,29 +23,83 @@ body {
   color: var(--fg);
   background: var(--bg);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 48px 24px 40px;
+  padding: 24px;
   -webkit-font-smoothing: antialiased;
 }
 
-@media (min-height: 700px) and (min-width: 480px) {
-  body {
-    align-items: center;
-    padding: 24px;
-  }
+/* ---- Layout deux panneaux ---- */
+
+.layout {
+  display: flex;
+  width: 100%;
+  max-width: 860px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
 }
 
-.card {
+/* Panneau gauche : image + logo */
+.brand-panel {
+  position: relative;
+  width: 42%;
+  flex-shrink: 0;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.banner-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 400px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.brand-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.12) 55%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.brand-name {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 10px 0 0;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Panneau droit : formulaire */
+.card {
+  flex: 1;
   background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 40px 32px 28px;
+  padding: 44px 36px 32px;
   position: relative;
 }
+
+/* ---- Typographie ---- */
 
 .eyebrow {
   margin: 0 0 20px;
@@ -58,7 +112,7 @@ body {
 
 .heading {
   margin: 0 0 8px;
-  font-size: clamp(24px, 5.5vw, 28px);
+  font-size: clamp(22px, 3.5vw, 28px);
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -71,20 +125,22 @@ body {
   color: var(--muted);
 }
 
+/* ---- Animations ---- */
+
 .step {
   animation: rise 280ms ease both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .step {
-    animation: none;
-  }
+  .step { animation: none; }
 }
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ---- Champs ---- */
 
 .field-label {
   display: block;
@@ -109,9 +165,7 @@ input[type="email"] {
   transition: border-color 120ms ease;
 }
 
-input::placeholder {
-  color: #b5b5b5;
-}
+input::placeholder { color: #b5b5b5; }
 
 input:focus {
   outline: none;
@@ -130,9 +184,9 @@ input:focus-visible {
   font-weight: 500;
 }
 
-.field-error::before {
-  content: "— ";
-}
+.field-error::before { content: "— "; }
+
+/* ---- Boutons ---- */
 
 .btn-primary,
 .btn-secondary {
@@ -153,18 +207,9 @@ input:focus-visible {
   border: 1px solid var(--fg);
 }
 
-.btn-primary:hover {
-  opacity: 0.85;
-}
-
-.btn-primary:active {
-  transform: scale(0.99);
-}
-
-.btn-primary:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
+.btn-primary:hover { opacity: 0.85; }
+.btn-primary:active { transform: scale(0.99); }
+.btn-primary:disabled { opacity: 0.45; cursor: default; }
 
 .btn-secondary {
   background: transparent;
@@ -184,7 +229,8 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-/* Puce téléphone : fil visuel entre l'étape 1 et l'étape 2 */
+/* ---- Puce téléphone ---- */
+
 .phone-pill {
   display: inline-flex;
   align-items: center;
@@ -212,11 +258,12 @@ input:focus-visible {
   background: var(--bg);
   border-radius: 999px;
   padding: 4px 8px;
+  flex-shrink: 0;
 }
 
-.phone-pill:hover .phone-pill-edit {
-  color: var(--fg);
-}
+.phone-pill:hover .phone-pill-edit { color: var(--fg); }
+
+/* ---- Icônes étape succès / spinner ---- */
 
 .check {
   width: 44px;
@@ -239,9 +286,7 @@ input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spinner {
-    animation-duration: 1400ms;
-  }
+  .spinner { animation-duration: 1400ms; }
 }
 
 @keyframes spin {
@@ -256,37 +301,64 @@ input:focus-visible {
   text-align: center;
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 32px 16px 32px;
+/* ---- Responsive ---- */
+
+/* Tablette : panneau image plus étroit */
+@media (max-width: 740px) {
+  .brand-panel {
+    width: 34%;
+    min-height: 460px;
   }
 
-  .card {
-    padding: 32px 20px 24px;
-  }
+  .brand-overlay { padding: 20px; }
+  .logo-img { width: 60px; }
+  .card { padding: 36px 24px 28px; }
 }
 
-@media (max-width: 380px) {
+/* Mobile : layout vertical (image en haut, formulaire en bas) */
+@media (max-width: 560px) {
   body {
-    padding: 24px 12px 24px;
+    align-items: flex-start;
+    padding: 0;
+    background: var(--card-bg);
   }
 
-  .card {
-    padding: 28px 16px 20px;
+  .layout {
+    flex-direction: column;
     border: none;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 100vh;
   }
+
+  .brand-panel {
+    width: 100%;
+    height: 200px;
+    min-height: unset;
+    flex-shrink: 0;
+  }
+
+  .brand-overlay {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .logo-img {
+    width: 52px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .card { padding: 32px 20px 28px; }
 }
 
-@media (max-width: 320px) {
-  .card {
-    padding: 24px 14px 18px;
-  }
-
-  .heading {
-    font-size: 20px;
-  }
-
-  .subcopy {
-    font-size: 14px;
-  }
+@media (max-width: 360px) {
+  .card { padding: 24px 16px 20px; }
+  .heading { font-size: 20px; }
 }

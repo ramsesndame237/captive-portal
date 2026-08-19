@@ -8,7 +8,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="card" role="main">
+  <div class="layout">
+
+    <!-- Panneau gauche : image du port + logo CNCC -->
+    <div class="brand-panel">
+      <img src="images/banner4.jpeg" alt="Port de Kribi" class="banner-img" />
+      <div class="brand-overlay">
+        <img src="images/cncc-logo.png" alt="Logo CNCC" class="logo-img" />
+        <p class="brand-name">Conseil National des<br>Chargeurs du Cameroun</p>
+      </div>
+    </div>
+
+    <!-- Panneau droit : formulaire -->
+    <main class="card" role="main">
 
     <p class="eyebrow" id="eyebrow">Wi-Fi invité</p>
 
@@ -92,6 +104,8 @@
     </p>
 
   </main>
+
+  </div><!-- /.layout -->
 
   <script src="script.js"></script>
 </body>
