@@ -1,0 +1,254 @@
+:root {
+  --bg: #fafafa;
+  --card-bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #6f6f6f;
+  --border: #e6e6e6;
+  --border-strong: #0a0a0a;
+  --radius: 2px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--fg);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 32px 28px;
+  position: relative;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.heading {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 5.5vw, 28px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.subcopy {
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.step {
+  animation: rise 280ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    animation: none;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--fg);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--fg);
+  margin-bottom: 14px;
+  transition: border-color 120ms ease;
+}
+
+input::placeholder {
+  color: #b5b5b5;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--border-strong);
+}
+
+input:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+}
+
+.field-error {
+  margin: -8px 0 12px;
+  font-size: 13px;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.field-error::before {
+  content: "— ";
+}
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity 120ms ease, transform 80ms ease;
+}
+
+.btn-primary {
+  background: var(--fg);
+  color: #fff;
+  border: 1px solid var(--fg);
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  margin-top: 4px;
+}
+
+.btn-secondary:hover {
+  background: var(--fg);
+  color: #fff;
+}
+
+.btn-secondary:focus-visible,
+.btn-primary:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* Puce téléphone : fil visuel entre l'étape 1 et l'étape 2 */
+.phone-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.phone-pill-edit {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+.phone-pill:hover .phone-pill-edit {
+  color: var(--fg);
+}
+
+.check {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--fg);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1400ms;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.footer-note {
+  margin: 28px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 380px) {
+  .card {
+    padding: 32px 22px 22px;
+    border: none;
+  }
+}

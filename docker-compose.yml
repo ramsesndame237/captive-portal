@@ -1,0 +1,12 @@
+services:
+  captive-portal:
+    build: .
+    container_name: captive-portal
+    restart: unless-stopped
+    ports:
+      - "5007:5007"
+    env_file:
+      - .env
+    volumes:
+      # Persiste la base SQLite en dehors du conteneur.
+      - ./data:/app/data

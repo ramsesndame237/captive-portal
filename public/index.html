@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Connexion Wi-Fi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="card" role="main">
+
+    <p class="eyebrow" id="eyebrow">Wi-Fi invité</p>
+
+    <!-- Puce affichée une fois le téléphone saisi, sert de fil visuel entre les étapes -->
+    <button type="button" id="phone-pill" class="phone-pill" hidden>
+      <span id="phone-pill-value"></span>
+      <span class="phone-pill-edit">Modifier</span>
+    </button>
+
+    <div aria-live="polite">
+
+      <!-- Étape 1 : toujours le téléphone en premier -->
+      <section id="step-phone" class="step">
+        <h1 class="heading">Connexion au réseau</h1>
+        <p class="subcopy">Entrez votre numéro de téléphone pour continuer.</p>
+
+        <form id="form-phone" novalidate>
+          <label class="field-label" for="input-phone">Numéro de téléphone</label>
+          <input
+            id="input-phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="+237 6XX XX XX XX"
+            required
+          />
+          <p class="field-error" id="error-phone" hidden></p>
+          <button type="submit" class="btn-primary" id="btn-phone-submit">Continuer</button>
+        </form>
+      </section>
+
+      <!-- Étape 2a : visiteur reconnu -->
+      <section id="step-welcome-back" class="step" hidden>
+        <h1 class="heading" id="welcome-back-heading">Bon retour parmi nous.</h1>
+        <p class="subcopy" id="welcome-back-subcopy">Connexion en cours...</p>
+        <div class="spinner" aria-hidden="true"></div>
+      </section>
+
+      <!-- Étape 2b : nouveau visiteur, formulaire complet -->
+      <section id="step-register" class="step" hidden>
+        <h1 class="heading">Bienvenue</h1>
+        <p class="subcopy">Encore une étape avant de vous connecter.</p>
+
+        <form id="form-register" novalidate>
+          <label class="field-label" for="input-name">Nom complet</label>
+          <input id="input-name" name="name" type="text" autocomplete="name" placeholder="Jean Mballa" required />
+          <p class="field-error" id="error-name" hidden></p>
+
+          <label class="field-label" for="input-email">Adresse email</label>
+          <input id="input-email" name="email" type="email" autocomplete="email" placeholder="jean@exemple.com" required />
+          <p class="field-error" id="error-email" hidden></p>
+
+          <button type="submit" class="btn-primary" id="btn-register-submit">Se connecter à internet</button>
+        </form>
+      </section>
+
+      <!-- Étape finale : succès -->
+      <section id="step-success" class="step" hidden>
+        <div class="check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
+        <h1 class="heading" id="success-heading">Vous êtes connecté.</h1>
+        <p class="subcopy" id="success-subcopy">Bonne navigation.</p>
+        <button type="button" class="btn-secondary" id="btn-continue" hidden>Continuer vers internet</button>
+      </section>
+
+      <!-- État d'erreur générique -->
+      <section id="step-error" class="step" hidden>
+        <h1 class="heading">Un problème est survenu</h1>
+        <p class="subcopy" id="error-message">Merci de réessayer dans un instant.</p>
+        <button type="button" class="btn-secondary" id="btn-retry">Réessayer</button>
+      </section>
+
+    </div>
+
+    <p class="footer-note">
+      Vos informations servent uniquement à vous reconnaître lors de vos prochaines visites.
+    </p>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
